@@ -9,8 +9,9 @@ print(os.environ.get("IP"))
 app = Flask(__name__)
 
 @app.route("/")
-def home():
-    return render_template("index.html")
+@app.route("/catalog")
+def catalog():
+    return render_template("catalog.html")
 
 
 if __name__ == "__main__":
