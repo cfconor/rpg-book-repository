@@ -1,7 +1,34 @@
 {% extends "base.html" %}
 {% block content %}
 
-   
+<div class="row">
+    {% for article in articles %}
+    <div class="col s3">
+        <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="{{ url_for('static', filename='img/Information_example_page_300px.jpg') }}">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">{{ article.article_name }}<i
+                        class="material-icons right">more_vert</i></span>
+                <p><a href="#">This is a link</a></p>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">{{ article.article_name }}<i
+                        class="material-icons right">close</i></span>
+                <ul>
+                    <li>{{ article.article_author }}</li>
+                    <li>{{ article.article_category }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    
+    {% endfor %}
+</div>
+
+  
 
 {% endblock %}
 
