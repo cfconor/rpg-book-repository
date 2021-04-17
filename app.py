@@ -46,7 +46,7 @@ def add_article():
             "created_by": session["username"],
             "tags": [""] # this may need to be removed if there is no clean way to implement it
         }
-        mongo.db.tasks.insert_one(article)
+        mongo_obj.db.articles.insert_one(article)
         return redirect(url_for("catalog"))
 
 
