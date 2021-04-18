@@ -128,6 +128,21 @@ def add_category():
     return render_template("add_categories.html")
 
 
+@app.route("/add_game_system", methods=["GET", "POST"])
+def add_game_system():
+    if request.method == "POST":
+        
+        game_system = {
+            "system_name":  request.form.get("system_name"),
+            "created_by": session["user"]
+        }
+        
+        mongo_obj.db.game_systems.insert_one(game_system)
+        return redirect(url_for("catalog"))
+
+    return render_template("add_game_systems.html")
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
