@@ -3,6 +3,7 @@ from flask import (Flask, flash, render_template,
                    redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date
 if os.path.exists("env/env.py"):
     import env.env
@@ -29,11 +30,58 @@ def catalog():
     return render_template("catalog.html", articles=articles)
 
 
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        # check if username already exists in db
+        existing_user = mongo_obj.db.users.find_one(
+                {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            return redirect(url_for("register"))
+
+        register = {
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password"))
+        }
+
+        mongo_obj.db.users.insert_one(register)
+
+        # put the new user into session cookie
+        session["username"] = request.form.get("username").lower()
+
+        return redirect(url_for("catalog"))
+    return render_template("register.html")
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        # check if username exists
+        existing_user = mongo_obj.db.users.find_one(
+                        {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            # ensure hashed pw matches entered
+            if check_password_hash(existing_user["password"],
+                                   request.form.get("password")):
+                session["username"] = request.form.get("username").lower()
+                return redirect(url_for("catalog"))
+
+            else:
+                # invalid pw check
+                return redirect(url_for("login"))
+
+        else:
+            # username doesnt exist
+            return redirect(url_for("login"))
+
+    return render_template("login.html")
+
+
 @app.route("/add_article", methods=["GET", "POST"])
 def add_article():
-    # setting some default values until further functionality added
-    session["username"] = "conor"
-
+    
     if request.method == "POST":
         today = date.today()
         created_date = today.strftime("%d/%m/%Y")
