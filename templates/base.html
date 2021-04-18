@@ -11,6 +11,18 @@
 </head>
 <body>
     <header>
+        <!-- Dropdown Structure -->
+        <ul id="category_dropdown" class="dropdown-content">
+            <li><a href="#!">Create Category</a></li>
+            <li><a href="#!">Edit Category</a></li>
+        </ul>
+        <!-- Dropdown Structure -->
+        <ul id="game_system_dropdown" class="dropdown-content">
+            <li><a href="#!">Create Game System</a></li>
+            <li><a href="#!">Edit Game System</a></li>
+        </ul>
+
+
         <nav>
             <div class="nav-wrapper">
                 <a href="{{ url_for('catalog') }}" class="brand-logo">DM Vault</a>
@@ -19,8 +31,9 @@
                     
                     {% if session.user %}
                         <li><a href="{{ url_for('add_article') }}">Add Books</a></li>
-                        <li><a href="#">Manage Article Categories</a></li>
-                        <li><a href="#">Manage Game Systems</a></li>
+                        <li><a class="dropdown-trigger" href="#!" data-target="category_dropdown">Manage Article Categories<i class="fas fa-angle-down prefix"></i></a></li>
+
+                        <li><a class="dropdown-trigger" href="#!" data-target="game_system_dropdown">Manage Game Systems<i class="fas fa-angle-down prefix"></i></a></li>
                         <li><a href="{{ url_for('logout') }}">Log Out: {{ session.user }}</a></li>
                     {% else %}
                         <li><a href="{{ url_for('login') }}">Log In</a></li>
