@@ -114,7 +114,16 @@ def add_article():
 
 @app.route("/add_category", methods=["GET", "POST"])
 def add_category():
-    # if request.method == "POST":
+    if request.method == "POST":
+        
+        category = {
+            "category_name":  request.form.get("category_name").lower(),
+            "category_desc": request.form.get("category_desc"),
+            "created_by": session["user"]
+        }
+        
+        mongo_obj.db.categories.insert_one(category)
+        return redirect(url_for("catalog"))
 
     return render_template("add_categories.html")
 
