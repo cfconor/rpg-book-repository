@@ -48,7 +48,7 @@ def register():
         mongo_obj.db.users.insert_one(register)
 
         # put the new user into session cookie
-        session["username"] = request.form.get("username").lower()
+        session["user"] = request.form.get("username").lower()
 
         return redirect(url_for("catalog"))
     return render_template("register.html")
@@ -65,7 +65,7 @@ def login():
             # ensure hashed pw matches entered
             if check_password_hash(existing_user["password"],
                                    request.form.get("password")):
-                session["username"] = request.form.get("username").lower()
+                session["user"] = request.form.get("username").lower()
                 return redirect(url_for("catalog"))
 
             else:
@@ -77,6 +77,13 @@ def login():
             return redirect(url_for("login"))
 
     return render_template("login.html")
+
+
+@app.route("/logout")
+def logout():
+    # remove user from session cookies
+    session.pop("user")
+    return redirect(url_for("login"))
 
 
 @app.route("/add_article", methods=["GET", "POST"])
@@ -91,7 +98,7 @@ def add_article():
             "article_category": request.form.get("article_category"),
             "game_system": request.form.get("game_system"),
             "created_date": created_date,
-            "created_by": session["username"],
+            "created_by": session["user"],
             "tags": [""] # this may need to be removed if there is no clean way to implement it
         }
         mongo_obj.db.articles.insert_one(article)
