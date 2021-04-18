@@ -42,7 +42,8 @@ def register():
 
         register = {
             "username": request.form.get("username").lower(),
-            "password": generate_password_hash(request.form.get("password"))
+            "password": generate_password_hash(request.form.get("password")),
+            "user_privileges": "user"
         }
 
         mongo_obj.db.users.insert_one(register)
@@ -95,6 +96,7 @@ def add_article():
         article = {
             "article_name": request.form.get("article_name"),
             "article_author": request.form.get("article_author"),
+            "article_link": request.form.get("article_link"),
             "article_category": request.form.get("article_category"),
             "game_system": request.form.get("game_system"),
             "created_date": created_date,
