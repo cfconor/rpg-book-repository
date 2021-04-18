@@ -112,6 +112,13 @@ def add_article():
     return render_template("add_article.html", categories=article_categories, game_systems=game_systems)
 
 
+@app.route("/add_category", methods=["GET", "POST"])
+def add_category():
+    # if request.method == "POST":
+
+    return render_template("add_categories.html")
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
