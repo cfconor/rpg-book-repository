@@ -43,7 +43,7 @@ def register():
         register = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password")),
-            "user_privileges": "user"
+            "user_privileges": "user" # default value for now, will need to add function to control this somehow
         }
 
         mongo_obj.db.users.insert_one(register)

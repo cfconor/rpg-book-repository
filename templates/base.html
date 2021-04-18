@@ -15,10 +15,11 @@
                 <a href="{{ url_for('catalog') }}" class="brand-logo">DM Vault</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('catalog') }}">Catalog</a></li>
-                    <li><a href="{{ url_for('add_article') }}">Add Books</a></li>
-                    <li><a href="#">Manage Article Categories</a></li>
-                    <li><a href="#">Manage Game Systems</a></li>
+                    
                     {% if session.user %}
+                        <li><a href="{{ url_for('add_article') }}">Add Books</a></li>
+                        <li><a href="#">Manage Article Categories</a></li>
+                        <li><a href="#">Manage Game Systems</a></li>
                         <li><a href="{{ url_for('logout') }}">Log Out: {{ session.user }}</a></li>
                     {% else %}
                         <li><a href="{{ url_for('login') }}">Log In</a></li>
