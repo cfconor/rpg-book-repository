@@ -128,6 +128,19 @@ def add_category():
     return render_template("add_categories.html")
 
 
+@app.route("/view_categories")
+def view_categories():
+    categories = list(mongo_obj.db.categories.find())
+    return render_template("view_categories.html", categories=categories)
+
+
+''' 
+@app.route("/edit_category/<category_id>", methods=["GET", "POST"])
+def edit_category(category_id):
+
+    return render_template("edit_category.html")
+'''
+
 @app.route("/add_game_system", methods=["GET", "POST"])
 def add_game_system():
     if request.method == "POST":

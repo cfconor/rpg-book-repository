@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+    
+    <ul class="collapsible align-center">
+        {% for category in categories %}
+            <li>
+                <div class="collapsible-header">
+                    {{ category.category_name.title() }}
+                </div>
+                <div class="collapsible-body">
+                    {{ category.category_desc }}
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    
+
+{% endblock %}
