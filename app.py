@@ -143,7 +143,7 @@ def edit_category(category_id):
             "category_desc": request.form.get("category_desc")
         }
         mongo_obj.db.categories.update({"_id": ObjectId(category_id)}, submit)
-        return redirect(url_for("get_categories"))
+        return redirect(url_for("view_categories"))
 
     category = mongo_obj.db.categories.find_one({"_id": ObjectId(category_id)})
     return render_template("edit_category.html", category=category)
