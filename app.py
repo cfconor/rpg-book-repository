@@ -134,12 +134,20 @@ def view_categories():
     return render_template("view_categories.html", categories=categories)
 
 
-''' 
+ 
 @app.route("/edit_category/<category_id>", methods=["GET", "POST"])
 def edit_category(category_id):
+    if request.method == "POST":
+        submit = {
+            "category_name": request.form.get("category_name"),
+            "category_desc": request.form.get("category_desc")
+        }
+        mongo_obj.db.categories.update({"_id": ObjectId(category_id)}, submit)
+        return redirect(url_for("get_categories"))
 
-    return render_template("edit_category.html")
-'''
+    category = mongo_obj.db.categories.find_one({"_id": ObjectId(category_id)})
+    return render_template("edit_category.html", category=category)
+
 
 @app.route("/add_game_system", methods=["GET", "POST"])
 def add_game_system():
