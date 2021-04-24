@@ -22,14 +22,14 @@ mongo_obj = PyMongo(app)
 
 
 
-
+# Article Catalog - Show all articles 
 @app.route("/")
 @app.route("/catalog")
 def catalog():
     articles = list(mongo_obj.db.articles.find())
     return render_template("catalog.html", articles=articles)
 
-
+# User Management - Register, Login, Logout
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -112,6 +112,7 @@ def add_article():
     return render_template("add_article.html", categories=article_categories, game_systems=game_systems)
 
 
+# Categories - Add, View, Edit
 @app.route("/add_category", methods=["GET", "POST"])
 def add_category():
     if request.method == "POST":
@@ -134,7 +135,6 @@ def view_categories():
     return render_template("view_categories.html", categories=categories)
 
 
- 
 @app.route("/edit_category/<category_id>", methods=["GET", "POST"])
 def edit_category(category_id):
     if request.method == "POST":
@@ -148,7 +148,7 @@ def edit_category(category_id):
     category = mongo_obj.db.categories.find_one({"_id": ObjectId(category_id)})
     return render_template("edit_category.html", category=category)
 
-
+# Game Systems - Add, View, Edit
 @app.route("/add_game_system", methods=["GET", "POST"])
 def add_game_system():
     if request.method == "POST":
@@ -170,7 +170,7 @@ def view_game_systems():
     return render_template("view_game_systems.html", game_systems=game_systems)
 
 
-
+# App.run method initialization
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

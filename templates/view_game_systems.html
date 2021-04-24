@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
     
+    <h3 class="center-align">View All Game Systems</h3>
+
+    <div class="row">
+        <div class="col s12">
+            <a href="{{ url_for('add_game_system') }}" class="btn-large light-blue accent-4 right-align">Add Game System</a>
+        </div>
+    </div>
+
     <ul class="collapsible align-center">
         {% for game_system in game_systems %}
             <li>
