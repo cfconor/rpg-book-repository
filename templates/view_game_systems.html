@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+    
+    <ul class="collapsible align-center">
+        {% for game_system in game_systems %}
+            <li>
+                <div class="collapsible-header">
+                    {{ game_system.system_name }}
+                </div>
+                <div class="collapsible-body">
+                    {{ game_system.created_by }}
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    
+
+{% endblock %}

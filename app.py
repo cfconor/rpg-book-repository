@@ -156,6 +156,13 @@ def add_game_system():
     return render_template("add_game_systems.html")
 
 
+@app.route("/view_game_systems")
+def view_game_systems():
+    game_systems = list(mongo_obj.db.game_systems.find())
+    return render_template("view_game_systems.html", game_systems=game_systems)
+
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
