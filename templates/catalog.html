@@ -15,7 +15,8 @@
                         <li><strong>Game System:</strong> {{ article.game_system }}</li>
                     </ul>
 
-                    <a class="col s6 btn-large" href="{{ article.article_link }}" target="_blank">Link to Document</a>
+                    <a class="col s3 btn-large" href="{{ article.article_link }}" target="_blank">Link to Document</a>
+                    <a class="col s3 btn-large" href="{{ url_for('edit_article', article_id=article._id) }}">Edit Article</a>
                 </div>
             </div>
     </li>

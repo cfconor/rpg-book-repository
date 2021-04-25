@@ -9,14 +9,17 @@
         </div>
     </div>
 
-    <ul class="collapsible align-center">
+    <ul class="collection align-center">
         {% for game_system in game_systems %}
-            <li>
-                <div class="collapsible-header">
-                    {{ game_system.system_name }}
-                </div>
-                <div class="collapsible-body">
-                    <p> <strong>Created By:</strong> {{ game_system.created_by }}</p> 
+            <li class="collection-item">
+                <div class="row valign-wrapper">
+                    <div class="col s6">
+                        {{ game_system.system_name }}
+                    </div>
+                    <div class="col s6">
+                        <a href="{{ url_for('edit_game_system', game_system_id=game_system._id) }}"
+                            class="btn-small light-blue accent-4 right">Edit Game System</a>
+                    </div>
                 </div>
             </li>
         {% endfor %}

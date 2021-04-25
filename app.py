@@ -3,6 +3,7 @@ from flask import (Flask, flash, render_template,
                    redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date
 if os.path.exists("env/env.py"):
@@ -86,7 +87,7 @@ def logout():
     session.pop("user")
     return redirect(url_for("login"))
 
-
+# Articles - Add, Edit, Remove
 @app.route("/add_article", methods=["GET", "POST"])
 def add_article():
     
@@ -111,6 +112,11 @@ def add_article():
     game_systems = mongo_obj.db.game_systems.find().sort("game_systems", 1)
     return render_template("add_article.html", categories=article_categories, game_systems=game_systems)
 
+@app.route("/edit_article/<article_id>", methods=["GET", "POST"])
+def edit_article(article_id):
+    
+    article = mongo_obj.db.articles.find_one({"_id": ObjectId(article_id)})
+    return render_template("edit_article.html", article=article)
 
 # Categories - Add, View, Edit
 @app.route("/add_category", methods=["GET", "POST"])
@@ -168,6 +174,22 @@ def add_game_system():
 def view_game_systems():
     game_systems = list(mongo_obj.db.game_systems.find())
     return render_template("view_game_systems.html", game_systems=game_systems)
+
+
+@app.route("/edit_game_system/<game_system_id>", methods=["GET", "POST"])
+def edit_game_system(game_system_id):
+
+    game_system = mongo_obj.db.game_systems.find_one({"_id": ObjectId(game_system_id)})
+    
+    if request.method == "POST":
+        submit = {
+            "system_name": request.form.get("system_name"),
+        }
+        mongo_obj.db.game_systems.update({"_id": ObjectId(game_system_id)}, submit)
+        return redirect(url_for("view_game_systems"))
+
+    game_system = mongo_obj.db.game_systems.find_one({"_id": ObjectId(game_system_id)})
+    return render_template("edit_game_system.html", game_system=game_system)
 
 
 # App.run method initialization
