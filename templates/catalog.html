@@ -14,9 +14,18 @@
                         <li><strong>Category:</strong> {{ article.article_category.title() }}</li>
                         <li><strong>Game System:</strong> {{ article.game_system }}</li>
                     </ul>
-
-                    <a class="col s3 btn-large" href="{{ article.article_link }}" target="_blank">Link to Document</a>
-                    <a class="col s3 btn-large" href="{{ url_for('edit_article', article_id=article._id) }}">Edit Article</a>
+                    <div class="col s6">
+                        <div class="row">
+                            <a class="col btn s6 right" href="{{ article.article_link }}" target="_blank">Link to Document</a>
+                        </div>
+                        <div class="row">
+                            <a class="col btn s6 right" href="{{ url_for('edit_article', article_id=article._id) }}">Edit Article</a>
+                        </div>
+                        <div class="row">
+                            <a class="col btn s6 right red darken-4" href="#!">Delete Article</a>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
     </li>
