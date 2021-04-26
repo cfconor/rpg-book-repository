@@ -30,6 +30,15 @@ def catalog():
     articles = list(mongo_obj.db.articles.find())
     return render_template("catalog.html", articles=articles)
 
+
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    search_string = request.form.get("search_string")
+    articles = list(mongo_obj.db.articles.find({"$text": {"$search": search_string}}))
+
+    return render_template("catalog.html", articles=articles)
+
+
 # User Management - Register, Login, Logout
 @app.route("/register", methods=["GET", "POST"])
 def register():

@@ -3,6 +3,21 @@
 
 <h3 class="center-align">The Catalog</h3>
 
+<!-- Search Bar -->
+<form action="{{ url_for('search') }}" method="POST">
+    <div class="row">
+        <div class="input-field col s8">
+            <input type="text" name="search_string" id="search_string" minlength="3" class="validate" required>
+            <label for="search_string">Search Articles</label>
+        </div>
+        <a href="{{ url_for('catalog') }}" class="btn col s2">Reset</a>
+        <button class="col s2 btn" type="submit">
+            Search
+        </button>
+    </div>
+</form>
+
+<!-- List out articles -->
 <ul class="col s12 collapsible align-center">
     {% for article in articles %}
     <li>
