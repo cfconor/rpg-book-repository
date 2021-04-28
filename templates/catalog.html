@@ -37,7 +37,7 @@
                             <a class="col btn s6 right" href="{{ url_for('edit_article', article_id=article._id) }}">Edit Article</a>
                         </div>
                         <div class="row">
-                            <a class="col btn s6 right red darken-4" href="#!">Delete Article</a>
+                            <a class="col btn s6 right red darken-4" href="{{ url_for('delete_article', article_id=article._id) }}">Delete Article</a>
                         </div>
                     </div>
                     

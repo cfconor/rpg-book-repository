@@ -128,8 +128,6 @@ def edit_article(article_id):
     
     article = mongo_obj.db.articles.find_one({"_id": ObjectId(article_id)})
 
-    print(article)
-
     if request.method == "POST":
         updated_article = {
             "article_name": request.form.get("article_name"),
@@ -151,10 +149,10 @@ def edit_article(article_id):
 
 
 @app.route("/delete_article/<article_id>")
-def delete_task(task_id):
-    mongo.db.tasks.remove({"_id": ObjectId(task_id)})
-    flash("Task Deleted")
-    return redirect(url_for("get_tasks"))
+def delete_article(article_id):
+    mongo_obj.db.articles.remove({"_id": ObjectId(article_id)})
+
+    return redirect(url_for("catalog"))
 
 
 # Categories - Add, View, Edit
@@ -193,6 +191,13 @@ def edit_category(category_id):
     category = mongo_obj.db.categories.find_one({"_id": ObjectId(category_id)})
     return render_template("edit_category.html", category=category)
 
+
+@app.route("/delete_category/<category_id>")
+def delete_category(category_id):
+    mongo_obj.db.categories.remove({"_id": ObjectId(category_id)})
+
+    return redirect(url_for("view_categories"))
+
 # Game Systems - Add, View, Edit
 @app.route("/add_game_system", methods=["GET", "POST"])
 def add_game_system():
@@ -204,7 +209,7 @@ def add_game_system():
         }
         
         mongo_obj.db.game_systems.insert_one(game_system)
-        return redirect(url_for("catalog"))
+        return redirect(url_for("view_game_systems"))
 
     return render_template("add_game_systems.html")
 
@@ -229,6 +234,13 @@ def edit_game_system(game_system_id):
 
     game_system = mongo_obj.db.game_systems.find_one({"_id": ObjectId(game_system_id)})
     return render_template("edit_game_system.html", game_system=game_system)
+
+
+@app.route("/delete_game_system/<game_system_id>")
+def delete_game_system(game_system_id):
+    mongo_obj.db.game_systems.remove({"_id": ObjectId(game_system_id)})
+
+    return redirect(url_for("view_game_systems"))
 
 
 # App.run method initialization
