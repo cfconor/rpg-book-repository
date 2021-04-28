@@ -96,6 +96,7 @@ def logout():
     session.pop("user")
     return redirect(url_for("login"))
 
+
 # Articles - Add, Edit, Remove
 @app.route("/add_article", methods=["GET", "POST"])
 def add_article():
@@ -121,11 +122,40 @@ def add_article():
     game_systems = mongo_obj.db.game_systems.find().sort("game_systems", 1)
     return render_template("add_article.html", categories=article_categories, game_systems=game_systems)
 
+
 @app.route("/edit_article/<article_id>", methods=["GET", "POST"])
 def edit_article(article_id):
     
     article = mongo_obj.db.articles.find_one({"_id": ObjectId(article_id)})
-    return render_template("edit_article.html", article=article)
+
+    print(article)
+
+    if request.method == "POST":
+        updated_article = {
+            "article_name": request.form.get("article_name"),
+            "article_author": request.form.get("article_author"),
+            "article_link": request.form.get("article_link"),
+            "article_category": request.form.get("article_category"),
+            "game_system": request.form.get("game_system"),
+            "created_date": article["created_date"],
+            "created_by": article["created_by"],
+            "tags": article["tags"] # this may need to be removed if there is no clean way to implement it
+        }
+        mongo_obj.db.articles.update({"_id": ObjectId(article_id)}, updated_article)
+        return redirect(url_for("catalog"))
+
+    article_categories = mongo_obj.db.categories.find().sort("category_name", 1)
+    game_systems = mongo_obj.db.game_systems.find().sort("game_systems", 1)
+
+    return render_template("edit_article.html", article=article, categories=article_categories, game_systems=game_systems)
+
+
+@app.route("/delete_article/<article_id>")
+def delete_task(task_id):
+    mongo.db.tasks.remove({"_id": ObjectId(task_id)})
+    flash("Task Deleted")
+    return redirect(url_for("get_tasks"))
+
 
 # Categories - Add, View, Edit
 @app.route("/add_category", methods=["GET", "POST"])
