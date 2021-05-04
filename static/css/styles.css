@@ -4,6 +4,14 @@ body {
     flex-direction: column;
   }
 
-  main {
+main {
     flex: 1 0 auto;
-  }
+}
+
+.cursive {
+    font-family: 'Permanent Marker', cursive;
+}
+
+#main-title {
+    padding-left: 1em;
+}
