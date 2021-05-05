@@ -18,13 +18,16 @@
                 <div class="row">
                     <div class="input-field col s12">
                     <i class="fas fa-user-lock prefix light-blue-text text-darken-4"></i>
-                    <input id="password" name="password" type="password" minlength="5" maxlength="15" class="validate" pattern="^[a-zA-Z0-9]{5,15}$" required>
+                    <input id="password" name="password" type="password" minlength="5" maxlength="15" class="validate"
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+                        required>
                     <label for="password">Password</label>
                     </div>
                 </div>
                 <!-- Register -->
                 <div class="row">
-                    <button type="submit" class="col s12 btn-large light-blue darken-4 text-shadow">
+                    <button type="submit" class="col s12 btn-large teal darken-2 text-shadow">
                         Register <i class="fas fa-sign-in-alt"></i>
                     </button>
                 </div>
