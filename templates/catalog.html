@@ -18,36 +18,48 @@
 </form>
 
 <!-- List out articles -->
-<ul class="col s12 collapsible align-center">
-    {% for article in articles %}
-    <li>
-        <div class="collapsible-header btn-large deep-purple lighten-3"><i class="fas fa-book"></i>{{ article.article_name }}</div>
-        <div class="collapsible-body">
-                <div class="row">
-                    <ul class="col s6">
-                        <li><strong>Author:</strong> {{ article.article_author }}</li>
-                        <li><strong>Category:</strong> {{ article.article_category.title() }}</li>
-                        <li><strong>Game System:</strong> {{ article.game_system }}</li>
-                    </ul>
-                    <div class="col s6">
+<div class="row center-align">
+    <ul class="col s12 center-align">
+        {% for article in articles %}
+        <li>
+            <div class="col s4">
+
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        <span class="card-title"><strong>{{ article.article_name }}</strong></span>
                         <div class="row">
-                            <a class="col btn s6 right" href="{{ article.article_link }}" target="_blank">Link to Document</a>
+                            <div class="col s4"><strong>Author:</strong> {{ article.article_author }}</div>
+                            <div class="col s4"><strong>Category:</strong> {{ article.article_category.title() }}</div>
+                            <div class="col s4"><strong>Game System:</strong> {{ article.game_system }}</div>
                         </div>
-                        {% if session["user"] %}
-                            <div class="row">
-                                <a class="col btn s6 right" href="{{ url_for('edit_article', article_id=article._id) }}">Edit Article</a>
-                            </div>
-                            <div class="row">
-                                <a class="col btn s6 right red darken-4" href="{{ url_for('delete_article', article_id=article._id) }}">Delete Article</a>
-                            </div>
-                        {% endif %}
                     </div>
-                    
+                    <div class="card-action">
+                        <div class="row">
+                            <div class="col s4">
+                                <a class="btn" href="{{ article.article_link }}" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                            
+                             {% if session["user"] %}
+                                <div class="col s4">
+                                    <a class="btn" href="{{ url_for('edit_article', article_id=article._id) }}"><i class="fas fa-pencil-alt"></i></a>
+                                </div>
+                                <div class="col s4">
+                                    <a class="btn red darken-4" href="{{ url_for('delete_article', article_id=article._id) }}"><i class="far fa-trash-alt"></i></a>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        </div>
                 </div>
             </div>
-    </li>
-    {% endfor %}
-</ul>
+        </li>
+    
+    
+    
+    
+        {% endfor %}
+    </ul>
+</div>
 
 
   
