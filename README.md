@@ -5,6 +5,8 @@ A web-based repository of useful books, supplements and other resources for play
 
 ## UX
 
+![Wireframe Image of Initial Desktop UX Layout](https://github.com/cfconor/rpg-book-repository/blob/main/static/img/mobile%20wireframe.png)
+
 ## Features
 
 ## Technologies Used
