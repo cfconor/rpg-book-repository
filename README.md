@@ -2,6 +2,8 @@ The DM Vault
 =============
 A web-based repository of useful books, supplements and other resources for players and dungeon masters looking for new useful material for their tabletop roleplaying games.
 
+[Deployed Website](https://rpg-book-repository.herokuapp.com/) [Github Repo](https://github.com/cfconor/rpg-book-repository)
+
 ## UX
 
 ### Target Audiences
