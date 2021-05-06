@@ -98,11 +98,15 @@ around and clicking on buttons and links.
 
 ### Languages and Markups Used
 * HTML (keeping with HTML5 best practices)
+    * Used for markup on the website, and format the content that would be served
 * CSS3
+    * added styling and UX functionality with Materialize CSS and created stylesheets.
 * Javascript
+    * used to add additional functions on certain Materialize CSS components, such as dropdowns and mobile nav bars.
 * Python
+    * Used to drive the back end behaviour, build the website page heirarchy and communicate with the database.
 * Jinja (used to inject Python code snippets into the html pages)
-
+    * Used to implement python behaviour in certain parts of the HTML pages, with for loops, if-else statements and HTML inheritance across pages.
 ### Data Management
 * MongoDB used to create a non-relational database which could be accessed by users
 via the user interface
@@ -126,8 +130,13 @@ as well as add features such as drop down menus and clean page formatting
 * PyMySQL
 * Werkzeug
 
+### Source Code Management
+* Git
+    * Regular commits on all new developments to keep track of changes.
+
 ### Hosting
 * Heroku
+    * A powerful hosting platform that allowed to deploy serverside apps like Flask, which was not possible with Github Pages.
 
 ## Data Management
 
