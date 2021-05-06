@@ -13,11 +13,13 @@ but the difference with the DM Vault is that it is not tied to any specific shop
 
 #### Layout
 ![Wireframe Image of Initial Desktop UX Layout](https://github.com/cfconor/rpg-book-repository/blob/main/static/img/desktop%20wireframe.png)
+
 As seen by the mockups, the design strategy for this website prioritised delivering relevant information to the user quickly, without much navigating around
 the site or having to do several clicks. The information is presented as soon as the homepage is shown, and for most users this may be the only thing they 
 need to use the website for, so having this shown first makes sense.
 
 ![Wireframe Image of Initial Mobile UX Layout](https://github.com/cfconor/rpg-book-repository/blob/main/static/img/mobile%20wireframe.png)
+
 Based on the assessment criteria, making the website responsive on different devices was not the top priority, however with the help of Materialize CSS
 front-end framework a lot of the responsive functionality is built in, helping streamline that process and allowing me to focus on the back-end and database. 
 The initial design for the mobile version of the app can be seen in the above wireframe.
