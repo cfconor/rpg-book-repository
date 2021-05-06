@@ -26,10 +26,20 @@ main {
     min-height: 200px;
 }
 
+
+
 .card .card-content {
     height: 250px;
 }
 
 .card .card-action {
+    height: 65px;
+}
+
+.small-card .card-content {
+    height: 150px;
+}
+
+.small-card .card-action {
     height: 65px;
 }
