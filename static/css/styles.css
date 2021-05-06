@@ -18,10 +18,18 @@ main {
 
 .card {
     height: 300px;
-    padding: 0 0 0 0;
+    max-height: 300px;
 }
 
 .small-card {
     height: 200px;
     min-height: 200px;
+}
+
+.card .card-content {
+    height: 250px;
+}
+
+.card .card-action {
+    height: 65px;
 }
