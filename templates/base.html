@@ -27,18 +27,17 @@
             <li><a href="{{ url_for('view_game_systems') }}">View Game Systems</a></li>
         </ul>
 
-
         <nav>
             <div class="nav-wrapper black">
                 <a href="{{ url_for('catalog') }}" class="brand-logo cursive" id="main-title">The DM Vault</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <ul class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('catalog') }}">Catalog</a></li>
                     
                     {% if session.user %}
                         <li><a href="{{ url_for('add_article') }}">Add Article</a></li>
                         <li><a class="dropdown-trigger" href="#!" data-target="category_dropdown">Manage Categories<i class="fas fa-angle-down prefix"></i></a></li>
-
+                        
                         <li><a class="dropdown-trigger" href="#!" data-target="game_system_dropdown">Manage Game Systems<i class="fas fa-angle-down prefix"></i></a></li>
                         <li><a href="{{ url_for('logout') }}">Log Out: {{ session.user }}</a></li>
                     {% else %}
@@ -53,9 +52,9 @@
             <li><a href="{{ url_for('catalog') }}">Catalog</a></li>
                 {% if session.user %}
                     <li><a href="{{ url_for('add_article') }}">Add Article</a></li>
-                    <li><a class="dropdown-trigger" href="#!" data-target="category_dropdown">Manage Categories<i class="fas fa-angle-down prefix"></i></a></li>
+                    <li><a href="{{ url_for('view_categories') }}">View Categories</a></li>
 
-                    <li><a class="dropdown-trigger" href="#!" data-target="game_system_dropdown">Manage Game Systems<i class="fas fa-angle-down prefix"></i></a></li>
+                    <li><a href="{{ url_for('view_game_systems') }}">View Game Systems</a></li>
                     <li><a href="{{ url_for('logout') }}">Log Out: {{ session.user }}</a></li>
                 {% else %}
                     <li><a href="{{ url_for('login') }}">Log In</a></li>
