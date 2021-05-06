@@ -127,6 +127,9 @@ as well as add features such as drop down menus and clean page formatting
 
 ## Data Management
 
+![Image of the database design strategy used in this project](https://github.com/cfconor/rpg-book-repository/blob/main/static/img/mobile_final.PNG?raw=true)
+
+
 ## Testing
 
 ## Deployment
